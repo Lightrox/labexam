@@ -6,63 +6,63 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>import javax.crypto.*;\n
-import javax.crypto.spec.*;\n
-import java.util.Scanner;\n
-\n
-public class AES {\n
-    public static void main(String[] args) throws Exception {\n
-        Scanner sc = new Scanner(System.in);\n
-        System.out.print("Input your message: ");\n
-        String msg = sc.nextLine();\n
-\n
-        KeyGenerator kg = KeyGenerator.getInstance("AES");\n
-        kg.init(128);\n
-        SecretKey key = kg.generateKey();\n
-        SecretKeySpec spec = new SecretKeySpec(key.getEncoded(), "AES");\n
-        Cipher c = Cipher.getInstance("AES");\n
-\n
-        c.init(Cipher.ENCRYPT_MODE, spec);\n
-        byte[] encrypted = c.doFinal(msg.getBytes());\n
-        System.out.println("Encrypted text: " + new String(encrypted));\n
-\n
-        c.init(Cipher.DECRYPT_MODE, spec);\n
-        byte[] decrypted = c.doFinal(encrypted);\n
-        System.out.println("Decrypted text: " + new String(decrypted));\n
-    }\n
+    <h2>
+import javax.crypto.*;<br>
+import javax.crypto.spec.*;<br>
+import java.util.Scanner;<br>
+<br>
+public class AES {<br>
+    public static void main(String[] args) throws Exception {<br>
+        Scanner sc = new Scanner(System.in);<br>
+        System.out.print("Input your message: ");<br>
+        String msg = sc.nextLine();<br>
+<br>
+        KeyGenerator kg = KeyGenerator.getInstance("AES");<br>
+        kg.init(128);<br>
+        SecretKey key = kg.generateKey();<br>
+        SecretKeySpec spec = new SecretKeySpec(key.getEncoded(), "AES");<br>
+        Cipher c = Cipher.getInstance("AES");<br>
+<br>
+        c.init(Cipher.ENCRYPT_MODE, spec);<br>
+        byte[] encrypted = c.doFinal(msg.getBytes());<br>
+        System.out.println("Encrypted text: " + new String(encrypted));<br>
+<br>
+        c.init(Cipher.DECRYPT_MODE, spec);<br>
+        byte[] decrypted = c.doFinal(encrypted);<br>
+        System.out.println("Decrypted text: " + new String(decrypted));<br>
+    }<br>
 }
-</h3>
-
-<h3>
-    import java.math.*;\n
-import java.util.*;\n
-\n
-public class RSA {\n
-    public static void main(String[] args) {\n
-        Scanner sc = new Scanner(System.in);\n
-\n
-        System.out.print("Enter a Prime number: ");\n
-        BigInteger p = sc.nextBigInteger();\n
-\n
-        System.out.print("Enter another prime number: ");\n
-        BigInteger q = sc.nextBigInteger();\n
-\n
-        BigInteger n = p.multiply(q);\n
-        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));\n
-\n
-        BigInteger e;\n
-        Random r = new Random();\n
-\n
-        do {\n
-            e = BigInteger.valueOf(r.nextInt(phi.intValue() - 1));\n
-        } while (e.compareTo(BigInteger.TWO) <= 0 || !phi.gcd(e).equals(BigInteger.ONE));\n
-\n
-        BigInteger d = e.modInverse(phi);\n
-\n
-        System.out.println("Encryption keys: " + e + ", " + n);\n
-        System.out.println("Decryption keys: " + d + ", " + n);\n
-    }\n
+</h2>
+<h2>
+import java.math.*;<br>
+import java.util.*;<br>
+<br>
+public class RSA {<br>
+    public static void main(String[] args) {<br>
+        Scanner sc = new Scanner(System.in);<br>
+<br>
+        System.out.print("Enter a Prime number: ");<br>
+        BigInteger p = sc.nextBigInteger();<br>
+<br>
+        System.out.print("Enter another prime number: ");<br>
+        BigInteger q = sc.nextBigInteger();<br>
+<br>
+        BigInteger n = p.multiply(q);<br>
+        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));<br>
+<br>
+        BigInteger e;<br>
+        Random r = new Random();<br>
+<br>
+        do {<br>
+            e = BigInteger.valueOf(r.nextInt(phi.intValue() - 1));<br>
+        } while (e.compareTo(BigInteger.TWO) <= 0 || !phi.gcd(e).equals(BigInteger.ONE));<br>
+<br>
+        BigInteger d = e.modInverse(phi);<br>
+<br>
+        System.out.println("Encryption keys: " + e + ", " + n);<br>
+        System.out.println("Decryption keys: " + d + ", " + n);<br>
+    }<br>
+</h2>
 }
-</h3>
 </body>
 </html>
