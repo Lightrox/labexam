@@ -6,67 +6,63 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>import javax.crypto.*;
-import javax.crypto.spec.*;
-import java.util.Scanner;
-
-public class AES {
-    public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Input your message: ");
-        String msg = sc.nextLine();
-
-        KeyGenerator kg = KeyGenerator.getInstance("AES");
-        kg.init(128);
-        SecretKey key = kg.generateKey();
-
-        SecretKeySpec spec = new SecretKeySpec(key.getEncoded(), "AES");
-        Cipher c = Cipher.getInstance("AES");
-
-        c.init(Cipher.ENCRYPT_MODE, spec);
-        byte[] encrypted = c.doFinal(msg.getBytes());
-
-        String enc = new String(encrypted);
-        System.out.println("Encrypted text: " + enc);
-
-        c.init(Cipher.DECRYPT_MODE, spec);
-        byte[] decrypted = c.doFinal(encrypted);
-
-        System.out.println("Decrypted text: " + new String(decrypted));
-    }
-}</h1>
-
-<h1>
-    import java.math.*;
-import java.util.*;
-
-public class RSA {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter a Prime number: ");
-        BigInteger p = sc.nextBigInteger();
-
-        System.out.print("Enter another prime number: ");
-        BigInteger q = sc.nextBigInteger();
-
-        BigInteger n = p.multiply(q);
-        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
-
-        BigInteger e;
-        Random r = new Random();
-
-        do {
-            e = BigInteger.valueOf(r.nextInt(phi.intValue() - 1));
-        } while (e.compareTo(BigInteger.TWO) <= 0 || !phi.gcd(e).equals(BigInteger.ONE));
-
-        BigInteger d = e.modInverse(phi);
-
-        System.out.println("Encryption keys: " + e + ", " + n);
-        System.out.println("Decryption keys: " + d + ", " + n);
-    }
+    <h3>import javax.crypto.*;\n
+import javax.crypto.spec.*;\n
+import java.util.Scanner;\n
+\n
+public class AES {\n
+    public static void main(String[] args) throws Exception {\n
+        Scanner sc = new Scanner(System.in);\n
+        System.out.print("Input your message: ");\n
+        String msg = sc.nextLine();\n
+\n
+        KeyGenerator kg = KeyGenerator.getInstance("AES");\n
+        kg.init(128);\n
+        SecretKey key = kg.generateKey();\n
+        SecretKeySpec spec = new SecretKeySpec(key.getEncoded(), "AES");\n
+        Cipher c = Cipher.getInstance("AES");\n
+\n
+        c.init(Cipher.ENCRYPT_MODE, spec);\n
+        byte[] encrypted = c.doFinal(msg.getBytes());\n
+        System.out.println("Encrypted text: " + new String(encrypted));\n
+\n
+        c.init(Cipher.DECRYPT_MODE, spec);\n
+        byte[] decrypted = c.doFinal(encrypted);\n
+        System.out.println("Decrypted text: " + new String(decrypted));\n
+    }\n
 }
-</h1>
+</h3>
+
+<h3>
+    import java.math.*;\n
+import java.util.*;\n
+\n
+public class RSA {\n
+    public static void main(String[] args) {\n
+        Scanner sc = new Scanner(System.in);\n
+\n
+        System.out.print("Enter a Prime number: ");\n
+        BigInteger p = sc.nextBigInteger();\n
+\n
+        System.out.print("Enter another prime number: ");\n
+        BigInteger q = sc.nextBigInteger();\n
+\n
+        BigInteger n = p.multiply(q);\n
+        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));\n
+\n
+        BigInteger e;\n
+        Random r = new Random();\n
+\n
+        do {\n
+            e = BigInteger.valueOf(r.nextInt(phi.intValue() - 1));\n
+        } while (e.compareTo(BigInteger.TWO) <= 0 || !phi.gcd(e).equals(BigInteger.ONE));\n
+\n
+        BigInteger d = e.modInverse(phi);\n
+\n
+        System.out.println("Encryption keys: " + e + ", " + n);\n
+        System.out.println("Decryption keys: " + d + ", " + n);\n
+    }\n
+}
+</h3>
 </body>
 </html>
